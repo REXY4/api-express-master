@@ -10,10 +10,10 @@ class Server  {
     }
 
      async setupServer(){
-       await this.startServer();
-    }
+       await this.setServer();
+    } 
 
-    startServer(){
+    setServer(){
         const port = this.config.app.port;
         this.app.listen(port,()=>console.log(`Running on Port ${port}`))
     }

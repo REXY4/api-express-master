@@ -8,26 +8,17 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-const config_1 = __importDefault(require("../config"));
-const express_1 = __importDefault(require("express"));
-class Server {
-    constructor() {
-        this.app = (0, express_1.default)();
-        this.config = config_1.default;
-        this.app.use(express_1.default.json());
-    }
-    setupServer() {
-        return __awaiter(this, void 0, void 0, function* () {
-            yield this.setServer();
+const checkApi = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        res.status(200).send({
+            statusCode: 200,
+            status: "success",
+            message: "ping success"
         });
     }
-    setServer() {
-        const port = this.config.app.port;
-        this.app.listen(port, () => console.log(`Running on Port ${port}`));
+    catch (error) {
+        next(error);
     }
-}
-exports.default = Server;
+});
+exports.default = checkApi;
